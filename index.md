@@ -1,6 +1,6 @@
-## Welcome to GitHub Pages
+## Добро пожаловать на мой трекер обучения.
 
-You can use the [editor on GitHub](https://github.com/Alfatto/Blog/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Это журнал для структурирования моей информации относительно профессии Java developer.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
