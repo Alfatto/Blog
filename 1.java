@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.Integer;
 public class Main {
    public static int squirrel(int N){
        int fact = 1;
@@ -6,6 +7,7 @@ public class Main {
            fact *= N;
            N--;
        }
-        return Integer.parseInt(Integer.toString(fact).substring(0,1));
+       int result = Integer.parseInt(Integer.toString(fact).substring(0,1));
+       return result;
    }
 }
