@@ -4,6 +4,6 @@ public class Level1
 {
     public static int squirrel(int N)
       {
-        return 1;
+        return 2;
       }
 }
