@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.Integer;
 public class Level1{
  public static int squirrel(int N){
         if (N == 0){
