@@ -8,10 +8,10 @@ public static int [] MadMax(int N, int [] Tele){
 		int[] copyTele = new int[Tele.length];
 
 		for (int r = 0; r < Tele.length; r++){
-			if (r < middle) {
+			if (r < middle - 1) {
 				copyTele[r] = Tele[r];
-			} else {
-				copyTele[r] = Tele[((middle -1) * 3 + 1 ) - r];
+				} else {
+				copyTele[r] = Tele[((middle -1) * 3) - r];
 			}
 		}
 		return Tele;
