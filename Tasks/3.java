@@ -53,6 +53,11 @@ public static int ConquestCampaign(int N, int M, int L, int [] battalion) {
 					}
 				}
 			}
+
+			if (prowerka == false){
+				return day;
+			}
+			
 			day++;
 
 		} while (prowerka != false);
