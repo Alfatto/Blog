@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 public class Level1{
 public static int [] MadMax(int N, int [] Tele){
 
@@ -10,10 +11,11 @@ public static int [] MadMax(int N, int [] Tele){
 		for (int r = 0; r < Tele.length; r++){
 			if (r < middle - 1) {
 				copyTele[r] = Tele[r];
-				} else {
+			} else {
 				copyTele[r] = Tele[((middle -1) * 3) - r];
 			}
 		}
+		Tele = Arrays.copyOf(copyTele, copyTele.length);
 		return Tele;
 	}
 }
