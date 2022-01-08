@@ -54,7 +54,7 @@ public static int ConquestCampaign(int N, int M, int L, int [] battalion) {
 				}
 			}
 
-			if (prowerka == false){
+			if (prowerka == false && day == 1){
 				return day;
 			}
 			
