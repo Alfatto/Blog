@@ -6,7 +6,7 @@ public static String PatternUnlock(int N, int[] hits) {
 
 		List<Integer> intListDiagonal = Arrays.asList(4, 6, 7, 9);
 		float[] summa = new float[N];
-		float diagonal = 1.414214f;
+		float diagonal = 1.41421f;
 		float odin = 1f;
 		char diagonalMatch = 'G';
 		char vertMatch = 'V';
