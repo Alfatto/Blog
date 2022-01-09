@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Level1{
-	public static int [] SynchronizingTables(int N, int [] ids, int [] salary){
+	public static String PatternUnlock(int N, int[] hits) {
 
 		List<Integer> intListDiagonal = Arrays.asList(4, 6, 7, 9);
 		float[] summa = new float[N];
