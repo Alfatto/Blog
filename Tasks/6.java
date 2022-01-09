@@ -39,7 +39,7 @@ public static String PatternUnlock(int N, int[] hits) {
 			value1 += summa[j];
 		}
 
-		double scale = Math.pow(10, 5);
+		double scale = Math.pow(10, 6);
 		double result = Math.ceil(value1 * scale) / scale;
 		int number = (int) (result * 100000);
 		int number1 = Integer.parseInt(Integer.toString(number).replace("0", ""));
