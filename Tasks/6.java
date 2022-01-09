@@ -4,15 +4,17 @@ public class Level1{
 
 public static String PatternUnlock(int N, int[] hits) {
 
+		
 		List<Integer> intListDiagonal = Arrays.asList(4, 6, 7, 9);
 		float[] summa = new float[N];
-		float diagonal = 1.41f;
-		float odin = 1f;
+		float diagonal = 1.414215f;
+		float odin = 1;
 		char diagonalMatch = 'G';
 		char vertMatch = 'V';
 		char dva = '2';
 		char[] charsArray = new char[hits.length];
-		float value1 = 0f;
+		float value1 = 0;
+
 
 		for (int i = 0; i < hits.length; i++) {
 			if (hits[i] == 2) {
@@ -39,9 +41,7 @@ public static String PatternUnlock(int N, int[] hits) {
 			value1 += summa[j];
 		}
 
-		double scale = Math.pow(10, 5);
-		double result = Math.ceil(value1 * scale) / scale;
-		int number = (int) (result * 100000);
+		int number = (int) (value1 * 100000);
 		int number1 = Integer.parseInt(Integer.toString(number).replace("0", ""));
 
 		String str = String.valueOf(number1);
