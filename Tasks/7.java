@@ -15,7 +15,7 @@ public static int [] WordSearch(int len, String s, String subs){
 				if (k != words.length - 1) {
 					builder.append(words[N] + '_');
 				} else {
-					builder.append(words[N]);
+					builder.append(words[N] + '_');
 				}
 				N++;
 			} else if (words[N].length() >= 12) {
