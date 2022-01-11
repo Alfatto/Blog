@@ -27,7 +27,7 @@ static boolean podstroka(String A, String B) {
 		return false;
 	}
 
-	public static int WordSearch(int len, String s, String subs) {
+	public static int[] WordSearch(int len, String s, String subs) {
 		int N = 0;
 		int resultLench = 0;
 		int indecsArray = 0;
