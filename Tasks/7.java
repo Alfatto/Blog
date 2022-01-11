@@ -30,6 +30,7 @@ static boolean podstroka(String A, String B) {
 	public static int[] WordSearch(int len, String s, String subs) {
 		int N = 0;
 		//int indecs = 0;// для возврата со строки
+		int N = 0;	
 		int resultLench = 0;
 		int indecsArray = 0;
 		String abc = "";
@@ -40,10 +41,9 @@ static boolean podstroka(String A, String B) {
 		if (s.length() != 0) {
 			indecsArray++;
 		}
-		//	int indeksKopy = 0;
+	
 
 		for (int k = 0; k < words.length; k++) {
-
 			if (builder.length() + words[N].length() <= len) {
 				if (k != words.length - 1) {
 					builder.append(words[N] + ' ');
