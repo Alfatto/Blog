@@ -49,7 +49,6 @@ static boolean podstroka(String A, String B) {
 					builder.append(words[N]);
 				}
 				N++;
-				//	logger.info("builder " + builder);
 			} else if (words[N].length() >= len) {
 				builder.append(words[N] + ' ');
 				N++;
