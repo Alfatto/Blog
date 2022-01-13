@@ -2,85 +2,83 @@ import java.util.*;
 
 public class Level1{
 
-static boolean podstroka(String A, String B) {
-		String str = " ,.";
+public static int[] WordSearch(int len, String s, String subs) {
+		//создаем необходимые переменные
+		String[] works = s.split(" ");//разбиваем строку s и создаем массив стрин
+		StringBuilder bilder = new StringBuilder();// она принимает значения из массива строк
+		StringBuilder bilderCopy = new StringBuilder();// оснавная переменная для записи bildera  в list
+		ArrayList<StringBuilder> list = new ArrayList<>();
+		boolean recordList;
+		boolean myBolean = false;
 
-		if (B.equals("")) {
-			return true;
+		//первый цикл принимаем значение из массива стринг
+		for (int i = 0; i < works.length; i++) {
+			//если bilder равен нулю
+			if (bilder.isEmpty()) {
+				bilder.append(works[i]);
+			}
+			recordList = false;
+
+			//запускаем второй цикл до тех пор пока biderCopy не обнулится
+			do {
+				if (bilder.length() > len) {
+					bilderCopy.append(bilder.substring(0, len));
+					bilder.delete(0, len);
+					recordList = true;
+				} else if (bilder.length() + bilderCopy.length() < len) {
+					if (bilder.length() + bilderCopy.length() < len) {
+						bilderCopy.append(bilder + " ");
+					} else {
+						bilderCopy.append(bilder);
+					}
+					bilder = new StringBuilder();
+				} else if (bilder.length() + bilderCopy.length() == len) {
+					bilderCopy.append(bilder);
+					bilder = new StringBuilder();
+					recordList = true;
+				} else if (bilder.length() + bilderCopy.length() > len && bilder.length() <= len) {
+					recordList = true;
+				}
+
+				//если record == true то записываем bilderCopy  в list и очищаем bilder
+				if (recordList == true || i == works.length - 1) {
+					list.add(bilderCopy);
+					bilderCopy = new StringBuilder();
+				}
+				recordList = false;
+
+			} while (!bilder.isEmpty());
+
 		}
 
-		for (int i = 0; i < A.length() && B.length() <= A.length() - i; i++) {
-			for (int c = 0; c < B.length() && B.charAt(c) == A.charAt(c + i); c++) {
-				if (c == B.length() - 1) {
-					if (B.length() == A.length()) {
-						return true;
-					} else if (c + 1 + i < A.length() && str.contains(Character.toString(A.charAt(c + i + 1)))) {
-						return true;
-					} else if (i == 0 && str.contains(Character.toString(A.charAt(c + i + 1)))) {
-						return true;
-					} else if (i > 0 && str.contains(Character.toString(A.charAt(i - 1)))) {
-						return true;
+		StringBuilder[] stroke;
+		stroke = list.toArray(list.toArray(new StringBuilder[0]));
+		int[] result = new int[list.size()];
+
+		for (int r = 0; r < stroke.length; r++) {
+			String str = " ,.";
+
+			if (s.equals("")) {
+				myBolean = true;
+			}
+			for (int i = 0; i < stroke[r].length() && subs.length() <= stroke[r].length() - i; i++) {
+				for (int c = 0; c < subs.length() && subs.charAt(c) == stroke[r].charAt(c + i); c++) {
+					if (c == subs.length() - 1) {
+						if (subs.length() == stroke[r].length()) {
+							myBolean = true;
+						} else if (c + 1 + i < stroke[r].length() && str.contains(Character.toString(stroke[r].charAt(c + i + 1)))) {
+							myBolean = true;
+						} else if (i == 0 && str.contains(Character.toString(stroke[r].charAt(c + i + 1)))) {
+							myBolean = true;
+						} else if (i > 0 && str.contains(Character.toString(stroke[r].charAt(i - 1)))) {
+							myBolean = true;
+						}
 					}
 				}
 			}
-		}
-		return false;
-	}
-
-	public static int[] WordSearch(int len, String s, String subs) {
-		int N = 0;
-		int resultLench = 0;
-		int indecsArray = 0;
-		String abc = "";
-		String[] words = s.split(" ");
-		StringBuilder builder = new StringBuilder("");
-		final int lenCopy = len;
-
-		if (s.length() != 0) {
-			indecsArray++;
-		}
-
-		for (int k = 0; k < words.length; k++) {
-
-			if (builder.length() + words[N].length() <= len) {
-				if (k != words.length - 1) {
-					builder.append(words[N] + ' ');
-				} else {
-					builder.append(words[N]);
-				}
-				N++;
-			} else if (words[N].length() >= len) {
-				builder.append(words[N] + ' ');
-				N++;
-			} else {
-				for (int i = builder.length(); i < len; i++) {
-					builder.append(' ');
-				}
-				indecsArray++;
-				len += lenCopy;
-				k--;
-			}
-		}
-		int[] result = new int[indecsArray];
-
-
-		for (int i = 0; i < result.length; i++) {
-			result[i] = 0;
-		}
-
-		String[] stroke = new String[indecsArray];
-		for (int b = 0, c = lenCopy; b < result.length; b++) {
-			if (b == result.length - 1) {
-				stroke[b] = builder.substring(c - lenCopy, builder.length());
-			} else {
-				stroke[b] = builder.substring(c - lenCopy, c);
-			}
-			c += lenCopy;
-		}
-
-		for (int i = 0; i < stroke.length; i++) {
-			if (podstroka(stroke[i], subs)) {
-				result[i] = 1;
+			if (myBolean == true) {
+				result[r] = 1;
+				myBolean = false;
 			}
 		}
 		return result;
