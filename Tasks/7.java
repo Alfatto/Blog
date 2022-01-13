@@ -11,37 +11,37 @@ public static int[] WordSearch(int len, String s, String subs) {
 		boolean recordList;
 		boolean myBolean = false;
 
-		//первый цикл принимаем значение из массива стринг
-		for (int i = 0; i < works.length; i++) {
+		//первый цикл приниаем значение из массива стринг
+		for (int i = 0; i < works.length; i++){
 			//если bilder равен нулю
-			if (bilder.isEmpty()) {
+			if (bilder.isEmpty()){
 				bilder.append(works[i]);
 			}
 			recordList = false;
 
 			//запускаем второй цикл до тех пор пока biderCopy не обнулится
 			do {
-				if (bilder.length() > len) {
+				if (bilder.length() > len){
 					bilderCopy.append(bilder.substring(0, len));
 					bilder.delete(0, len);
 					recordList = true;
-				} else if (bilder.length() + bilderCopy.length() < len) {
+				} else if (bilder.length() + bilderCopy.length() < len){
 					if (bilder.length() + bilderCopy.length() < len) {
 						bilderCopy.append(bilder + " ");
 					} else {
 						bilderCopy.append(bilder);
 					}
 					bilder = new StringBuilder();
-				} else if (bilder.length() + bilderCopy.length() == len) {
+				} else if (bilder.length() + bilderCopy.length() == len){
 					bilderCopy.append(bilder);
 					bilder = new StringBuilder();
 					recordList = true;
-				} else if (bilder.length() + bilderCopy.length() > len && bilder.length() <= len) {
+				} else if (bilder.length() + bilderCopy.length() > len && bilder.length() <= len){
 					recordList = true;
 				}
 
 				//если record == true то записываем bilderCopy  в list и очищаем bilder
-				if (recordList == true || i == works.length - 1) {
+				if (recordList == true || i == works.length - 1){
 					list.add(bilderCopy);
 					bilderCopy = new StringBuilder();
 				}
@@ -58,7 +58,7 @@ public static int[] WordSearch(int len, String s, String subs) {
 		for (int r = 0; r < stroke.length; r++) {
 			String str = " ,.";
 
-			if (s.equals("")) {
+			if (s.equals("")){
 				myBolean = true;
 			}
 			for (int i = 0; i < stroke[r].length() && subs.length() <= stroke[r].length() - i; i++) {
@@ -70,7 +70,7 @@ public static int[] WordSearch(int len, String s, String subs) {
 							myBolean = true;
 						} else if (i == 0 && str.contains(Character.toString(stroke[r].charAt(c + i + 1)))) {
 							myBolean = true;
-						} else if (i > 0 && str.contains(Character.toString(stroke[r].charAt(i - 1)))) {
+						} else if (i > 0 && str.contains(Character.toString(stroke[r].charAt(i - 1))) && str.contains(Character.toString(stroke[r].charAt(c + i + 1))) ) {
 							myBolean = true;
 						}
 					}
