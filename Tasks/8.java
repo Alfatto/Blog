@@ -7,13 +7,12 @@ public class Level1{
 			result += k;
 		}
 		for (int i: data){
-			result -= i;
 			for (int r: data){
-				if (result == r){
-					return result;
+				if (i == result - r){
+					return i;
 				}
 			}
 		}
-		return result;
+		return 0;
 	}
 }
