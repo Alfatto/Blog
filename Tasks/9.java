@@ -29,7 +29,7 @@ public  static String TheRabbitsFoot(String s, Boolean encode){
 					if (myAray[d][e] != null){
 						builderCopy.append(myAray[d][e]);
 					}
-					if(d == arayLench - 1){
+					if(d == arayLench - 1 && e != arayLench - 1){
 						builderCopy.append(" ");
 					}
 				}
