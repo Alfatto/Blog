@@ -76,12 +76,22 @@ public class Level1{
 				result.add(max[k]);
 			}
 		}
-		Collections.reverse(result);
 		
+		Collections.reverse(result);
 		StringBuilder sb = new StringBuilder();
+		boolean intNull = false;
+		
 		for (int s : result)
 		{
 			sb.append(s);
+			if (s !=0){
+				intNull = true;
+			}
+		}
+
+		if (!intNull){
+			sb = new StringBuilder();
+			sb.append(0);
 		}
 		return sb.toString();
 	}
