@@ -82,14 +82,13 @@ public class Level1{
 
 		boolean intNull = false;
 
-		for (int s = 0; s < result.length(); s++)
-		{
-			if (result.charAt(s) !=0){
+		for (int s = 0; s < result.length(); s++) {
+			if (result.charAt(s) != '0') {
 				intNull = true;
 			}
 		}
 
-		if (!intNull){
+		if (intNull == false) {
 			result = new StringBuilder();
 			result.append(0);
 		}
