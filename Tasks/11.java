@@ -93,7 +93,7 @@ public class Level1{
 
 		if (intNull == false) {
 			result = new StringBuilder();
-			result.append(0);
+			//result.append(0);
 		}
 
 		return result.toString();
