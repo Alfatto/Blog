@@ -58,7 +58,10 @@ public class Level1{
 			}
 
 			if (counter >= 0) {
-				if (max[k] == 0) {
+				if (max[k] == 0 && min[counter] == 0) {
+					result.append(max[k]);
+					counter--;
+				} else if (max[k] == 0) {
 					result.append(10 - min[counter]);
 					counter--;
 					flagInt = true;
