@@ -4,7 +4,8 @@ public class Level1{
 	public static String BigMinus(String s1, String s2) {
 		ArrayList<Integer> maxList;
 		ArrayList<Integer> minList;
-		ArrayList<Integer> result = new ArrayList<>();
+		StringBuilder sb = new StringBuilder();
+		StringBuilder result = new StringBuilder();
 		boolean s1BolscheS2 = true;
 		boolean flagInt = false;
 
@@ -58,41 +59,41 @@ public class Level1{
 
 			if (counter >= 0) {
 				if (max[k] == 0) {
-					result.add(10 - min[counter]);
+					result.append(10 - min[counter]);
 					counter--;
 					flagInt = true;
 				} else if (max[k] < min[counter]) {
-					result.add(10 - (min[counter] - max[k]));
+					result.append(10 - (min[counter] - max[k]));
 					counter--;
 					flagInt = true;
 				} else {
-					result.add(max[k] - min[counter]);
+					result.append(max[k] - min[counter]);
 					counter--;
 				}
 			} else {
 				if (k == 0 && max[k] == 0) {
 					continue;
 				}
-				result.add(max[k]);
+				result.append(max[k]);
 			}
 		}
-		
-		Collections.reverse(result);
-		StringBuilder sb = new StringBuilder();
+
+		result.reverse();
+
 		boolean intNull = false;
-		
-		for (int s : result)
+
+		for (int s = 0; s < result.length(); s++)
 		{
-			sb.append(s);
-			if (s !=0){
+			if (result.charAt(s) !=0){
 				intNull = true;
 			}
 		}
 
 		if (!intNull){
-			sb = new StringBuilder();
-			sb.append(0);
+			result = new StringBuilder();
+			result.append(0);
 		}
-		return sb.toString();
+
+		return result.toString();
 	}
 }
