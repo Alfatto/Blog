@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Level1{
 	public static String BigMinus(String s1, String s2) {
-		List<Integer> maxList;
-		List<Integer> minList;
-		List<Integer> result = new ArrayList<>();
+		ArrayList<Integer> maxList;
+		ArrayList<Integer> minList;
+		ArrayList<Integer> result = new ArrayList<>();
 		boolean s1BolscheS2 = true;
 		boolean flagInt = false;
 
@@ -77,7 +77,12 @@ public class Level1{
 			}
 		}
 		Collections.reverse(result);
-
-		return result.toString();
+		
+		StringBuilder sb = new StringBuilder();
+		for (int s : result)
+		{
+			sb.append(s);
+		}
+		return sb.toString();
 	}
 }
