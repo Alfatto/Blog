@@ -7,7 +7,7 @@ public class Level1{
 		int sum = 0;
 		int numberSystem;
 		int[] result = new int[N];
-		int n = 0;
+		int n;
 
 		if (octal) {
 			numberSystem = 8;
