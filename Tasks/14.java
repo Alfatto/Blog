@@ -11,8 +11,7 @@ public class Level1{
 			} else
 			if (i == track[0][flag] - 1){
 				//строка это светофоры, столбцы это секунды
-				result += Math.abs(track[flag][1] - track[flag][0] + 1);
-				flag++;
+				result += Math.abs(track[flag][1] - i);
 			} else {
 				result++;
 			}
