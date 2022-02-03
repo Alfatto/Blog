@@ -10,7 +10,9 @@ public class Level1{
 				return  L;
 			} else
 			if (i == track[0][flag] - 1){
-				result += track[1][0] - track[0][0] + 1;
+				//строка это светофоры, столбцы это секунды
+				result += Math.abs(track[flag][1] - track[flag][0] + 1);
+				flag++;
 			} else {
 				result++;
 			}
