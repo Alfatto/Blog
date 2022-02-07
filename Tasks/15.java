@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Level1{
-	public static int Unmanned(int L, int N, int [][] track) {
 
 public static boolean TankRush(int H1, int W1, String S1, int H2, int W2, String S2){
 		boolean kart = false;
