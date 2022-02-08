@@ -1,6 +1,14 @@
 import java.util.*;
 
 public class Level1{
+	public static void main(String[] args) {
+		//..WordSearch(12,'1) stroka razbivaetsya na nabor strok cherez vyravnivanie po zadannoj shirine.','strok')=[0,0,0,1,0,0,0]
+		String s = "1) stroka razbivaetsya na nabor strok cherez vyravnivanie po zadannoj shirine.";
+		String subs ="strok";
+		int len = 12;
+
+		System.out.println(Arrays.toString(WordSearch(len, s, subs)));
+	}
 
 public static int[] WordSearch(int len, String s, String subs) {
 		//создаем необходимые переменные
