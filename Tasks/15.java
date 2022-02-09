@@ -15,7 +15,7 @@ public class Level1{
 					break;
 				}
 				for (int j = 0; j < array1[i].length(); j++) {
-					if (array1[i].indexOf(array2[k], j) == array1[i + 1].indexOf(array2[k + 1], j)) {
+					if (array1[i].indexOf(array2[k], j) == array1[i + 1].indexOf(array2[k + 1], j) && array1[i + 1].indexOf(array2[k + 1], j) != -1) {
 						return true;
 					}
 				}
