@@ -5,7 +5,6 @@ public class Level1{
 		int result = 0;
 		int numberOfDiscountPurchases = 3;
 
-
 		Arrays.sort(price);
 
 		int i;
