@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Level1{
 
- public static boolean LineAnalysis(String line) {
+    public static boolean LineAnalysis(String line) {
 
         if (line.charAt(0) != '*') {
             return false;
@@ -15,11 +15,11 @@ public class Level1{
         boolean astra = true;
         boolean result = false;
         boolean flag = false;
-        int N = 0;
-        int number = 0;
+        int start = 0;
+        int end = 0;
 
         for (int i = 0; i < s.length(); i++) {
-            N++;
+            start++;
 
             if (s.charAt(i) != '*') {
                 astra = false;
@@ -28,7 +28,7 @@ public class Level1{
             if (s.charAt(i) == '*' && !astra) {
                 astra = true;
                 flag = true;
-                number = i;
+                end = i;
             }
 
             if (i == s.length() - 1 && astra) {
@@ -39,25 +39,28 @@ public class Level1{
                 sequence.append(s.charAt(i));
             }
 
-            if (flag && ((s.length() - 1) % (N - 1)) != 0 || i == s.length() - 1 && astra) {
+            if (flag && ((s.length() - 1) % (start - 1)) != 0) {
                 astra = false;
                 break;
             }
-            
+
+
             for (int k = 0; k < s.length() && flag; k++) {
-                if (number < s.length()) {
-                    if (k == 0 && s.substring(k + i + 1, number + i + 1).contentEquals(sequence)) {
+                if (end < s.length()) {
+                    if (k == 0 && s.substring(start, end + i + 1).contentEquals(sequence)) {
                         astra = true;
-                        k += N - 1;
-                        number += N;
-                        i = number;
-                    } else if (s.substring(k - 1, number).contentEquals(sequence)){
+                        start += sequence.length() - 1;
+                        end += sequence.length() + i;
+                    } else if (k > 0 && s.substring(start + 1, end + 1).contentEquals(sequence)){
                         astra = true;
+                        start += sequence.length();
+                        end += sequence.length();
                     } else {
                         astra = false;
                     }
-                    k += i;
-                    number += N;
+                    k = end;
+                    i = k;
+
                 }
             }
         }
