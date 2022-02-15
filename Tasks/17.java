@@ -65,8 +65,6 @@ public class Level1{
             }
         }
 
-        
-
         if (astra) {
             result = true;
         }
