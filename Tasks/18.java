@@ -18,7 +18,7 @@ public class Level1{
                 while (index >= 0) {
                     index -= 2;
                 }
-                index -= 2;
+                index += 2;
                 data1.add(index, 1);
             }
             index = data1.indexOf(1);
