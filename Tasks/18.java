@@ -4,7 +4,6 @@ public class Level1{
 
  public static boolean MisterRobot(int N, int[] data) {
         boolean possibleToArrange = false;
-
         ArrayList<Integer> data1 = new ArrayList<>();
         for (int i = 0; i < data.length; i++) {
             data1.add(data[i]);
