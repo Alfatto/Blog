@@ -7,11 +7,8 @@ public class Level1{
 
         String[] predResult = new String[items.length*2];//для разделенных строк
         String[] stroka;
-        ArrayList<String> list = new ArrayList<>();
-        String[] result = new String[predResult.length];
-        int lenchArray = 0;
+        String[] result;
         int counter = 0;
-        int summ;
         int number1;
         int number2;
         int NumberFromString1;
@@ -28,42 +25,31 @@ public class Level1{
         }
 
         counter = 2;
+        //создаем map  чтобы посчитать количество проданных вещей, и исключить повторяемые вещи
+        HashMap<String,String> map = new HashMap<>();
 
-        //считаем сумму количеств продаж вещей
-        for (int i = 0; i < predResult.length - 1;){//ячейка i это вещь i+1 это количество продаж
-            summ = Integer.parseInt(predResult[i+1]);
-            //запускаем подцикл он проходит и считает сколько продаж есть у вещи из первого цикла
-            for (int k = 2; k < predResult.length - 1 && Integer.parseInt(predResult[i + 1]) != 0;){//цикл запускается тогда когда summa не равна нулю
-                if (predResult[i].equals(predResult[k]) && k != predResult.length - counter && i != k){//ищем совпадения по ячейки i, исключаем вариант
-                    //когда номер ячеек одинаковый
-                    summ += Integer.parseInt(predResult[k + 1]);
-                    predResult[k + 1] = "0";//ячейку где хранятся количество продаж вещей обнуляем, что бы не считать повторно
-                }
-                k+=counter;
+        for (int i = 1; i < predResult.length; i += counter){
+            if (i == 1){
+                map.put(predResult[i -1], predResult[i]);
+            } else if (map.containsKey(predResult[i-1])){
+                map.put(predResult[i - 1],"" + (Integer.parseInt(map.get(predResult[i-1])) + Integer.parseInt(predResult[i])));
+            } else {
+                map.put(predResult[i -1], predResult[i]);
             }
-            if (Integer.parseInt(predResult[i+1]) != 0){//собрали сумму, записываем в лист, почему не массив? потому, что не знаем какой длины создавать массив
-                list.add(predResult[i] + " " + summ);
-                result[i] = predResult[i];
-                result[i + 1] = "" + summ;
-                lenchArray++;
-            }
-            i+=counter;
         }
 
-        predResult = new String[list.size() * counter];
-        counter = 0;
+        Set<String> keySet = map.keySet();//для получения всех ключей
+        predResult = new String[map.size() * 2];
 
-        //опять приходится разбивать строки на массив
-        for (String s: list){
-            stroka = s.split(" ");
 
-            predResult[counter] = stroka[0];
+        counter =0;
+        //упаковываем массив
+        for (String s: keySet){
+            predResult[counter] = s;
             counter++;
-            predResult[counter] = stroka[1];
+            predResult[counter] = map.get(s);
             counter++;
-            stroka = null;
         }
-
 
         stroka = new String[2];
         counter = 2;
@@ -124,11 +110,12 @@ public class Level1{
             stringBuilder1 = new StringBuilder();
             stringBuilder2 = new StringBuilder();
         }
+        System.out.println("");
 
         //инициализирем маасив
         result = new String[predResult.length / 2];
-        lenchArray = 0;
 
+        int lenchArray = 0;
         //заполняем масив
         for (int j = 1; j < predResult.length;){
             result[lenchArray] = (predResult[j - 1] + " " + predResult[j]);
