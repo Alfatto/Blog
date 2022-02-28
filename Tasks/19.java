@@ -93,7 +93,7 @@ public class Level1{
                 predResult[i - 1] = stroka[1];
                 predResult[i] = stroka[0];
                 i = 1;
-            } else if (NumberFromString1 > NumberFromString2 && number1 == number2){//вариант когда количество продаж одинаково
+            } else if (NumberFromString1 > NumberFromString2 && number1 == number2 && stringBuilder1.length() == stringBuilder2.length()){//вариант когда количество продаж одинаково
                 //сортируем по лексеграфическому возрастанию
                 stroka[0] = predResult[i - 1];//забираем меньшее
                 stroka[1] = predResult[i];
