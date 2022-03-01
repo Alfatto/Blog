@@ -11,16 +11,9 @@ static StringBuilder stringBuilder = new StringBuilder();
     static String s = "";
     static boolean reset = false;
     //static String[] strings = {"1 Привет", "1 , Мир!", "1 ++", "2 2", "4", "4", "1 *", "4", "4", "4", "3 6", "2 100"};
-    static String[] strings = {"1 Привет", "1 , Мир!", "1 ++", "4", "4", "5", "4", "5", "5", "5", "5", "4", "4", "2 2", "4", "5", "5", "5"};
+   // static String[] strings = {"1 Привет", "1 , Мир!", "1 ++", "4", "4", "5", "4", "5", "5", "5", "5", "4", "4", "2 2", "4", "5", "5", "5"};
     //static String[] strings = {"1 Привет", "1 , Мир!", "1 ++", "4", "1 o+", "5", "5", "5"};
     //static String[] strings = {"1 1", "1 2", "1 3", "1 4", "4", "4", "4", "4", "5", "5", "5", "5", "5", "5"};
-
-    public static void main(String[] args) {
-
-        for (String s : strings) {
-            System.out.println(BastShoe(s));
-        }
-    }
 
 
     public static String BastShoe(String command) {
