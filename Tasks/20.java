@@ -3,93 +3,135 @@ import java.util.*;
 public class Level1{
 
 
-static StringBuilder stringBuilder = new StringBuilder();
-    static int myCommad;
-    static Stack<StringBuilder> stringStack = new Stack<>();
-    static Stack<StringBuilder> redo = new Stack<>();
-    static int N;
-    static String s = "";
-    static boolean reset = false;
-    //static String[] strings = {"1 Привет", "1 , Мир!", "1 ++", "2 2", "4", "4", "1 *", "4", "4", "4", "3 6", "2 100"};
-   // static String[] strings = {"1 Привет", "1 , Мир!", "1 ++", "4", "4", "5", "4", "5", "5", "5", "5", "4", "4", "2 2", "4", "5", "5", "5"};
-    //static String[] strings = {"1 Привет", "1 , Мир!", "1 ++", "4", "1 o+", "5", "5", "5"};
-    //static String[] strings = {"1 1", "1 2", "1 3", "1 4", "4", "4", "4", "4", "5", "5", "5", "5", "5", "5"};
+ private static final ChangeBuffer buffer = new ChangeBuffer();
+    private static final StringBuilder currentString;
 
-
-    public static String BastShoe(String command) {
-
-        String[] numbers = command.split(" ");
-        //N = Math.abs(Character.getNumericValue(command.charAt(0)));
-        N = Integer.parseInt(numbers[0]);
-
-        if (N == 1) {
-            //System.out.println("вызов 1: ");
-            if (reset) {
-                stringStack = new Stack<>();
-                redo = new Stack<>();
-                stringStack.push(new StringBuilder(stringBuilder));
-            }
-            stringStack.push(new StringBuilder(stringBuilder));
-            stringBuilder.append(command.substring(2, command.length()));
-            return new String(stringBuilder);
-        } else if (N == 2) {
-            //System.out.println("вызов 2");
-            if (reset) {
-                stringStack = new Stack<>();
-                redo = new Stack<>();
-                stringStack.push(new StringBuilder(stringBuilder));
-            }
-            myCommad = Integer.parseInt(numbers[1]);
-            String s = new String(stringBuilder);
-            if (myCommad > stringBuilder.length()) {
-                stringBuilder = new StringBuilder();
-            } else {
-                stringStack.push(new StringBuilder(stringBuilder));
-                stringBuilder = new StringBuilder(s.substring(0, s.length() - myCommad));
-                //System.out.println("добавляем строку " + stringBuilder);
-                return new String(stringBuilder);
-            }
-        } else if (N == 3) {
-            //System.out.println("вызов 3");
-            if (stringBuilder.length() < Integer.parseInt(numbers[1])) {
-                return "null";
-            } else {
-                return Character.toString(stringBuilder.charAt(Character.getNumericValue(command.charAt(2))));
-            }
-        } else if (N == 4) {
-            //System.out.println("вызов 4");
-            //если резет фальс то откатываем по нехочу
-            if (stringStack.size() == 0) {
-                redo.push(new StringBuilder(stringBuilder));
-                return new String(stringBuilder);
-            } else {
-                //перед изменение билдер отправляем оба стека
-                reset = true;
-                redo.push(new StringBuilder(stringBuilder));
-                stringBuilder = new StringBuilder(stringStack.peek());
-                //смотрим что отправилось
-//                System.out.println("stringStack.peek() " + stringStack.peek());
-//                System.out.println("redo.peek() " +redo.peek());
-                return new String(stringStack.pop());
-            }
-
-        } else if (N == 5) {
-            //System.out.println("вызов 5");
-            if (redo.size() == 1){
-                return new String(redo.peek());
-            } else {
-                //перед изменением отправлем билдер в stek
-                stringStack.push(new StringBuilder(stringBuilder));
-                //смотрим что отправилось
-//                System.out.println("stringStack.peek() " + stringStack.peek());
-//                System.out.println("redo.peek() " +redo.peek());
-                return new String(redo.pop());
-            }
-        } else {
-            return "null";
-        }
-
-        return "";
+    static {
+        currentString = new StringBuilder();
     }
 
+    public static String BastShoe(String command) {
+        boolean isSimpleCommand = !command.contains(" ");
+
+        if(!isCommandCorrect(command)){
+            return currentString.toString();
+        }
+
+        int commandNumber = isSimpleCommand
+                ? Integer.parseInt(command)
+                : Integer.parseInt(command.substring(0, command.indexOf(" ")));
+
+        String data = isSimpleCommand
+                ? ""
+                : command.substring(command.indexOf(" ") + 1);
+
+        switch (commandNumber){
+            case 1:
+                String message = data;
+                currentString.append(message);
+
+                buffer.save(currentString.toString());
+                return currentString.toString();
+            case 2:
+                int amountSymbolsToDelete = Integer.parseInt(data);
+                if(amountSymbolsToDelete >= currentString.length()){
+                    currentString.setLength(0);
+                }
+                else if(amountSymbolsToDelete >= 0) {
+                    currentString.setLength(currentString.length() - amountSymbolsToDelete);
+                }
+
+                buffer.save(currentString.toString());
+                return currentString.toString();
+            case 3:
+                String resultStr = "";
+                int symbolIndex = Integer.parseInt(data);
+                if(symbolIndex >= 0 && symbolIndex < currentString.length()){
+                    resultStr = Character.toString(currentString.charAt(symbolIndex));
+                }
+                return resultStr;
+            case 4:
+                currentString.setLength(0);
+                currentString.append(buffer.undo());
+                return currentString.toString();
+            case 5:
+                currentString.setLength(0);
+                currentString.append(buffer.redo());
+                return currentString.toString();
+        }
+        return currentString.toString();
+    }
+
+
+    private static boolean isCommandCorrect(String command){
+        if(!Character.isDigit(command.charAt(0))){
+            return false;
+        }
+
+        int commandCode = Integer.parseInt(Character.toString(command.charAt(0)));
+
+        if(commandCode < 1 || commandCode > 5){
+            return false;
+        }
+
+        if((commandCode == 1 || commandCode == 2 || commandCode == 3) && (command.length() <= 1 || command.charAt(1) != ' ')){
+            return false;
+        }
+
+        if((commandCode == 4 || commandCode == 5) && command.length() != 1){
+            return false;
+        }
+
+        if((commandCode == 2 || commandCode == 3) && !Character.isDigit(command.charAt(2))){
+            return false;
+        }
+
+        return true;
+    }
+
+    private static class ChangeBuffer {
+        private List<String> buffer = new ArrayList<>();
+        private int cursor = -1;
+        private String lastOperation = "";
+
+        public void save(String record){
+            if(lastOperation.equals("undo") && cursor != -1){
+                String current = buffer.get(cursor);
+                buffer.clear();
+                buffer.add(current);
+                cursor = 0;
+            }
+
+            cursor++;
+            buffer.add(cursor, record);
+
+            lastOperation = "save";
+        }
+
+        public String undo(){
+            if(cursor == -1){
+                return buffer.get(0);
+            }
+
+            lastOperation = "undo";
+
+            if(cursor != 0){
+                cursor--;
+                return buffer.get(cursor);
+            }
+            else {
+                return buffer.get(0);
+            }
+        }
+
+        public String redo(){
+            if(cursor < buffer.size() - 1){
+                cursor++;
+            }
+
+            lastOperation = "redo";
+
+            return buffer.get(cursor);
+        }
+    }
 }
