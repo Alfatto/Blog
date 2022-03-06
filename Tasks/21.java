@@ -23,7 +23,7 @@ public class Level1{
         //перебираем все возможные варианты и упаковываем в лист
         permutation(input);
         list = sortedSet.toArray(list);
-        for (int i = 0; i < list.length; i++) {
+        for (int i = 0; i < list.length - 1; i++) {
 
             if (list[i].equals(input)) {
                 result = list[i + 1];
