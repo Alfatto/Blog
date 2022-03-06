@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Level1{
 
-	private static boolean flag = false;
+	 private static boolean flag = false;
     private static SortedSet<String> sortedSet = new TreeSet();
     private static String[] list = new String[0];
 
