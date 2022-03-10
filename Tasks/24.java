@@ -5,7 +5,6 @@ public class Level1{
  static int i = 0;
     static int k = 0;
     static int n = 0;
-    static String Matrix[];
     static String[][] result;
     static int kolStroke;
     static int dlStroke;
@@ -30,7 +29,7 @@ public class Level1{
         }
 
         //результат переводим в одномерную матрицу
-        Matrix = new String[resultCopy.length];
+//        Matrix = Matrix;
         StringBuilder stringBuilder = new StringBuilder();
         for (int l = 0; l < resultCopy.length; l++) {
             for (int a = 0; a < resultCopy[0].length; a++) {
@@ -93,7 +92,5 @@ public class Level1{
         }
         return resultCopy;
     }
-
-
 
 }
