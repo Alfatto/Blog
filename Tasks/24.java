@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Level1{
-
  static int i = 0;
     static int k = 0;
     static int n = 0;
