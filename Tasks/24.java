@@ -11,7 +11,7 @@ public class Level1{
     static int dlStroke;
     static String[][] resultCopy;
 
-    public static void MatrixTurn(String Matrix[], int M, int N, int T) {
+    public static void MatrixTurn(String[] Matrix, int M, int N, int T) {
 
         result = new String[M][N];
         kolStroke = M;
